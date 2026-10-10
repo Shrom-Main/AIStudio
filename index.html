@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Industrial Consumables Distribution Engine — POC-001</title>
+    <meta name="description" content="POC-001 commercial decision and capital allocation OS for SS304 industrial hose clamp sourcing, QA, marketplace experimentation, and B2B distribution." />
+    <meta property="og:title" content="Industrial Consumables Distribution Engine — POC-001" />
+    <meta property="og:description" content="POC-001 commercial decision and capital allocation OS for SS304 industrial hose clamp sourcing, QA, marketplace experimentation, and B2B distribution." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Environment constraint: HMR disabled in cloud sandbox. Prevent WebSocket errors and unhandled rejections
+      (function() {
+        // 1. WebSocket Shim for Vite HMR to prevent unhandled rejection at @vite/client:225:39
+        var OriginalWebSocket = window.WebSocket;
+        if (OriginalWebSocket) {
+          function MockViteHmrSocket(url, protocols) {
+            var isHmr = false;
+            if (protocols === 'vite-hmr') isHmr = true;
+            if (Array.isArray(protocols) && protocols.indexOf('vite-hmr') !== -1) isHmr = true;
+            if (typeof url === 'string' && (url.indexOf('vite-hmr') !== -1 || url.indexOf('token=') !== -1 || url.indexOf('/@vite/') !== -1)) isHmr = true;
+
+            if (!isHmr) {
+              return new OriginalWebSocket(url, protocols);
+            }
+
+            var listeners = {};
+            this.readyState = 1; // WebSocket.OPEN so Vite skips await new Promise and never rejects
+            this.url = url;
+            this.protocol = 'vite-hmr';
+            this.binaryType = 'blob';
+
+            this.addEventListener = function(event, handler) {
+              listeners[event] = listeners[event] || [];
+              listeners[event].push(handler);
+              if (event === 'open') {
+                setTimeout(function() {
+                  try { handler(new Event('open')); } catch(e) {}
+                }, 0);
+              }
+            };
+            this.removeEventListener = function(event, handler) {
+              if (!listeners[event]) return;
+              listeners[event] = listeners[event].filter(function(h) { return h !== handler; });
+            };
+            this.dispatchEvent = function() { return true; };
+            this.send = function() {};
+            this.close = function() {
+              this.readyState = 3;
+            };
+          }
+
+          MockViteHmrSocket.CONNECTING = 0;
+          MockViteHmrSocket.OPEN = 1;
+          MockViteHmrSocket.CLOSING = 2;
+          MockViteHmrSocket.CLOSED = 3;
+          MockViteHmrSocket.prototype = OriginalWebSocket.prototype;
+          window.WebSocket = MockViteHmrSocket;
+        }
+
+        // 2. Global suppression for any latent Vite client unhandled rejections or error events
+        function isViteOrWsError(val) {
+          if (!val) return false;
+          var str = String(val.stack || val.message || val.reason || val);
+          return str.indexOf('@vite/client') !== -1 ||
+                 str.indexOf('WebSocket') !== -1 ||
+                 str.indexOf('vite-hmr') !== -1 ||
+                 str.indexOf('Failed to fetch dynamically imported module') !== -1;
+        }
+
+        window.addEventListener('unhandledrejection', function(e) {
+          if (isViteOrWsError(e.reason)) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+          }
+        }, true);
+
+        window.addEventListener('error', function(e) {
+          if (
+            (e.filename && e.filename.indexOf('@vite/client') !== -1) ||
+            isViteOrWsError(e.message) ||
+            isViteOrWsError(e.error)
+          ) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+          }
+        }, true);
+
+        var prevOnError = window.onerror;
+        window.onerror = function(message, source, lineno, colno, error) {
+          if (
+            (source && source.indexOf('@vite/client') !== -1) ||
+            isViteOrWsError(message) ||
+            isViteOrWsError(error)
+          ) {
+            return true;
+          }
+          if (prevOnError) {
+            return prevOnError.apply(this, arguments);
+          }
+          return false;
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

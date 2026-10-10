@@ -1,0 +1,6 @@
+{
+  "name": "Industrial Consumables Distribution Engine",
+  "description": "POC-001 commercial decision and capital allocation OS for SS304 industrial hose clamp sourcing, QA, marketplace experimentation, and B2B distribution.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
